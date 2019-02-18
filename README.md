@@ -62,6 +62,8 @@ device.snapshot()
 device.select_source_aux()
 # Select Bluetooth input
 device.select_source_bluetooth()
+# Select TV input
+device.select_source_tv()
 
 # Restore previous snapshot
 device.restore()
