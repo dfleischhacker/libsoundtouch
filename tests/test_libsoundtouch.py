@@ -466,6 +466,12 @@ def _mocked_select_aux(*args, **kwargs):
     ]:
         raise Exception("Unknown call")
 
+def _mocked_select_tv(*args, **kwargs):
+    if args[0] != "http://192.168.1.1:8090/select" or args[1] not in [
+        '<ContentItem source="PRODUCT" sourceAccount="TV" />'
+    ]:
+        raise Exception("Unknown call")
+
 
 def _mocked_select_content_item(*args, **kwargs):
     if args[0] != "http://192.168.1.1:8090/select" or args[1] not in [
@@ -1148,6 +1154,12 @@ class TestLibSoundTouch(unittest.TestCase):
         device = MockDevice("192.168.1.1")
         device.select_source_aux()
         self.assertEqual(mocked_select_aux.call_count, 1)
+
+    @mock.patch('requests.post', side_effect=_mocked_select_tv)
+    def test_select_tv(self, mocked_select_tv):
+        device = MockDevice("192.168.1.1")
+        device.select_source_tv()
+        self.assertEqual(mocked_select_tv.call_count, 1)
 
     @mock.patch('requests.post', side_effect=_mocked_select_content_item)
     def test_select_content_item(self, mocked_select_content_item):

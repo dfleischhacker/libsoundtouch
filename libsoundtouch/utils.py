@@ -59,7 +59,12 @@ class Source(Enum):
     LOCAL_MUSIC = "LOCAL_MUSIC"
     BLUETOOTH = "BLUETOOTH"
     INVALID_SOURCE = "INVALID_SOURCE"
+    PRODUCT = "PRODUCT"
 
+class ProductSourceAccounts(Enum):
+    """Specific source accounts provided by the PRODUCT source"""
+
+    TV = "TV"
 
 class Type(Enum):
     """Music types.

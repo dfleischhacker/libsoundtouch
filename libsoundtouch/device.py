@@ -13,8 +13,7 @@ from threading import Thread
 import requests
 import websocket
 
-from libsoundtouch.utils import Source
-from .utils import Key, Type
+from .utils import Key, Type, Source, ProductSourceAccounts
 
 STATE_STANDBY = 'STANDBY'
 
@@ -312,6 +311,10 @@ class SoundTouchDevice:
     def select_source_bluetooth(self):
         """Select BLUETOOTH source."""
         self.select_content_item(Source.BLUETOOTH)
+
+    def select_source_tv(self):
+        """Select TV source."""
+        self.select_content_item(Source.PRODUCT, ProductSourceAccounts.TV.value)
 
     def _create_zone(self, slaves):
         if len(slaves) <= 0:
